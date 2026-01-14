@@ -20,6 +20,9 @@ const register = async (req, res) => {
         // 1. destructure data from the request
         const { firstName, lastName, email, password } = req.body;
 
+        if (!firstName || !lastName || !email || !password) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
         // 2. check if user already exists
         const existingUser = await User.findByEmail(email);
         if (existingUser) {
@@ -45,7 +48,9 @@ const register = async (req, res) => {
         });
     } catch (error) {
         console.error("ERROR: ", error);
-        res.status(500).json({ error: "Server error. Failed to create the user." });
+        res.status(500).json({
+            error: "Server error. Failed to create the user.",
+        });
     }
 };
 

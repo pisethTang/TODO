@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import Register from "./pages/Register";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 ></Route>
+                <Route path="/register" element={<Register />}></Route>
                 {/* fallback for any non-matching path*/}
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
