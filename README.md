@@ -1,6 +1,6 @@
 # To-Do List SaaS Application
 
-![Hero Image Placeholder](https://via.placeholder.com/1200x600?text=To-Do+List+SaaS+Application+Banner)
+![Hero Image Placeholder](./app.png)
 
 A professional, secure, multi-user task management SaaS application built with a modern REST API architecture. Manage your productivity with ease through a clean interface and robust security.
 
@@ -161,7 +161,3 @@ cd todo-saas-app
 -   **Authentication**: Stateless sessions via JWT stored in \`localStorage\`.
 -   **Authorization**: Custom middleware verifies ownership of resources before any DB operation.
 -   **Data Integrity**: Passwords are never stored in plain text, using \`bcrypt\` for hashing.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
