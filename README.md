@@ -99,65 +99,65 @@ graph TD
 
 ### 1. Clone the Repository
 
-\`\`\`bash
+```bash
 git clone https://github.com/your-username/todo-saas-app.git
 cd todo-saas-app
-\`\`\`
+```
 
 ### 2. Database Setup
 
 1. Log in to your MySQL terminal:
-   \`\`\`sql
-   CREATE DATABASE todo_db;
-   \`\`\`
-2. The application includes an initialization script to create the necessary tables (\`users\`, \`tasks\`).
+    ```sql
+    CREATE DATABASE todo_db;
+    ```
+2. The application includes an initialization script to create the necessary tables (`users`, `tasks`).
 3. You will run this script after configuring the backend environment variables.
 
 ### 3. Backend Configuration
 
 1. Navigate to the backend directory:
-   \`\`\`bash
-   cd todo-backend
-   npm install
-   \`\`\`
-2. Create a \`.env\` file:
-   \`\`\`env
-   PORT=3000
-   DB_HOST=localhost
-   DB_USER=your_mysql_user
-   DB_PASSWORD=your_mysql_password
-   DB_NAME=todo_db
-   JWT_SECRET=your_super_secret_key
-   \`\`\`
+    ```bash
+    cd todo-backend
+    npm install
+    ```
+2. Create a `.env` file:
+    ```env
+    PORT=3000
+    DB_HOST=localhost
+    DB_USER=your_mysql_user
+    DB_PASSWORD=your_mysql_password
+    DB_NAME=todo_db
+    JWT_SECRET=your_super_secret_key
+    ```
 3. Initialize the database schema:
-   \`\`\`bash
-   node models/init.js
-   \`\`\`
+    ```bash
+    node models/init.js
+    ```
 4. Start the backend server:
-   \`\`\`bash
-   npm run dev
-   \`\`\`
+    ```bash
+    npm run dev
+    ```
 
 ### 4. Frontend Configuration
 
 1. Open a new terminal and navigate to the frontend directory:
-   \`\`\`bash
-   cd todo-frontend
-   npm install
-   \`\`\`
-2. Create a \`.env\` file:
-   \`\`\`env
-   VITE_API_URL=http://localhost:3000/api
-   \`\`\`
+    ```bash
+    cd todo-frontend
+    npm install
+    ```
+2. Create a `.env` file:
+    ```env
+    VITE_API_URL=http://localhost:3000/api
+    ```
 3. Start the frontend development server:
-   \`\`\`bash
-   npm run dev
-   \`\`\`
+    ```bash
+    npm run dev
+    ```
 
 ---
 
 ## 🔒 Security
 
--   **Authentication**: Stateless sessions via JWT stored in \`localStorage\`.
+-   **Authentication**: Stateless sessions via JWT stored in `localStorage`.
 -   **Authorization**: Custom middleware verifies ownership of resources before any DB operation.
--   **Data Integrity**: Passwords are never stored in plain text, using \`bcrypt\` for hashing.
+-   **Data Integrity**: Passwords are never stored in plain text, using `bcrypt` for hashing.
