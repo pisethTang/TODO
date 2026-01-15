@@ -1,0 +1,3 @@
+Vitest: The engine that runs the tests.
+
+Supertest: A library that allows us to simulate HTTP requests (GET, POST) to your Express server without having to manually open a browser or Postman.

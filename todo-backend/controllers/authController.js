@@ -113,6 +113,7 @@ const login = async (req, res) => {
 
         res.json({
             message: "Login successfully",
+            token: token,
             user: {
                 id: user.id,
                 first_name: user.first_name,
@@ -135,6 +136,23 @@ const logout = async (req, res) => {
     });
 };
 
-module.exports = { register, login, logout };
+//
+const checkCookie = async (req, res) => {
+    try {
+        const givenId = req.user.id;
+        const corresponding_user = await User.checkCookie(givenId);
+        // console.log("User: ", corresponding_user);
+        res.status(200).json({
+            message: "User",
+            user: corresponding_user,
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: `Server error: ${error}`,
+        });
+    }
+};
+
+module.exports = { register, login, logout, checkCookie };
 // should wrap the functions inside {} (because later on, we may need to add more and we can't assign more than 1 value to module.exports)
 // This is actually shorthand for: module.exports = { register: register };

@@ -61,3 +61,5 @@ app.listen(PORT, async () => {
     // test the db connection when the server starts
     await testConnection();
 });
+
+module.exports = app;
