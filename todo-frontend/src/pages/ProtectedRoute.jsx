@@ -1,10 +1,11 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
 
     // If there is no token, redirect to login
-    if (!token) {
+    if (!isLoggedIn) {
         return <Navigate to="/" replace />;
     }
 

@@ -12,11 +12,15 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await api.post("/auth/login", { email, password });
-
             // Save the "Golden Ticket"
-            localStorage.setItem("token", response.data.token);
-
-            alert("Login Successful!");
+            // localStorage.setItem("token", response.data.token);
+            // at this point the cookie si already set in the browser so we don't need to set it in the localStorage anymore. 
+            console.log("Response: ", response)
+            localStorage.setItem("isLoggedIn", "true"); // just a flag, not a secret token 
+            // if (!response) {
+            //     alert(response?.data?.error || "Login Failed");
+            // }
+            // alert("Login Successful!");
             // then, we;ll redirect to the dashboard
             navigate("/dashboard");
         } catch (error) {
@@ -42,6 +46,7 @@ const Login = () => {
                                 placeholder="Email address"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                autoComplete="current-email"
                             />
                         </div>
                         <div>
@@ -52,6 +57,7 @@ const Login = () => {
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                autoComplete="current-password"
                             />
                         </div>
                     </div>

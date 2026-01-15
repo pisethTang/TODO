@@ -13,25 +13,29 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Register from "./pages/Register";
 
+import { AuthProvider } from "./context/AuthProvider";
+
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Login />}></Route>
-                {/* wrap dashboard in ProtectedRoute */}
-                <Route
-                    path="/dashboard"
-                    element={
-                        <ProtectedRoute>
-                            <Dashboard />
-                        </ProtectedRoute>
-                    }
-                ></Route>
-                <Route path="/register" element={<Register />}></Route>
-                {/* fallback for any non-matching path*/}
-                <Route path="*" element={<NotFound />}></Route>
-            </Routes>
-        </BrowserRouter>
+        <AuthProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login />}></Route>
+                    {/* wrap dashboard in ProtectedRoute */}
+                    <Route
+                        path="/dashboard"
+                        element={
+                            <ProtectedRoute>
+                                <Dashboard />
+                            </ProtectedRoute>
+                        }
+                    ></Route>
+                    <Route path="/register" element={<Register />}></Route>
+                    {/* fallback for any non-matching path*/}
+                    <Route path="*" element={<NotFound />}></Route>
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
 

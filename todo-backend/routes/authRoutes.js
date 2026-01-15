@@ -1,11 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
+const { protect } = require("../middleware/authMiddleware");
 
 // POST route
 router.post("/register", authController.register);
 
 router.post("/login", authController.login);
+
+
+// because we implemented HTTP-Only Cookie, our react code cannot read the cookie and hence cannot know whether we are logged in or not. 
+// checks if the cookie is valid and returns the user data. 
+router.get("/me", protect, (req, res) => {
+    res.json({ user: req.user });
+});
 
 // when to use { } (named exports) : when a file is a "Toolbox" containing many different tools (like a Controller with reister, login, logout).
 // we want to pick and choose which tool grab.

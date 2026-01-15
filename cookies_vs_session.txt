@@ -1,0 +1,4 @@
+Feature,localStorage + Header,HTTP-Only Cookie
+Effort,You have to write code to save and send the token.,Browser does it for you automatically.
+Security,Vulnerable to XSS (JavaScript can steal the token).,Safe from XSS (JavaScript cannot see the token).
+Cleanup,You have to delete the token manually on logout.,Server can expire the cookie automatically.

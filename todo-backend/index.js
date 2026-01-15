@@ -2,6 +2,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { testConnection } = require("./config/db");
 
+// cookies
+const cookieParser = require("cookie-parser");
+
 // router imports
 const authRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
@@ -21,10 +24,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(
+    cors({
+        origin: "http://localhost:5173",
+        credentials: true, // allows cookies to be sent cross-origin (from port 3000 to 5173)
+    })
+); // allows backend port to talk to frontend port.
 
-app.use(cors()); // allows backend port to talk to frontend port.
-
-
+app.use(cookieParser());
 
 // 3. Middleware
 app.use(express.json()); // allows the app to understand JSON data sent in POST request

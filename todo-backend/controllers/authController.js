@@ -19,7 +19,7 @@ const register = async (req, res) => {
     try {
         // 1. destructure data from the request
         const { firstName, lastName, email, password } = req.body;
-
+        console.log("backend reached!");
         if (!firstName || !lastName || !email || !password) {
             return res.status(400).json({ error: "All fields are required" });
         }
@@ -98,9 +98,25 @@ const login = async (req, res) => {
         // exp: the expiration time on or after which the JWT must not be accepted for processing.
         // }
 
+        // res.json({
+        //     message: "Login successfully",
+        //     token: token,
+        // });
+        // To switch to Cookies, we need to change how the backend sends the token and how hot frotnend receives it.
+        // Send token as an HTTP-only Cookie
+        res.cookie("token", token, {
+            httpOnly: true, // Block any JS code on the browser from access and modifying the token
+            secure: process.env.NODE_ENV === "production", // only sends over HTTPs in production
+            sameSite: "strict", // prevent CSRF attacks
+            maxAge: 3600000, // 1 hour (in milliseconds)
+        });
+
         res.json({
             message: "Login successfully",
-            token: token,
+            user: {
+                id: user.id,
+                first_name: user.first_name,
+            },
         });
     } catch (error) {
         console.error("ERROR: ", error);
@@ -108,6 +124,17 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { register, login };
+const logout = async (req, res) => {
+    res.cookie("token", "", {
+        httpOnly: true,
+        expires: new Date(0), // expiration date to the past to delete it
+        sameSite: "strict",
+    });
+    res.status(200).json({
+        message: "Logged out successfully",
+    });
+};
+
+module.exports = { register, login, logout };
 // should wrap the functions inside {} (because later on, we may need to add more and we can't assign more than 1 value to module.exports)
 // This is actually shorthand for: module.exports = { register: register };
