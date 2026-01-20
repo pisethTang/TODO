@@ -1,4 +1,4 @@
-# To-Do List SaaS Application
+# To-Do List Application
 
 ![Hero Image Placeholder](./app.png)
 
@@ -161,3 +161,5 @@ cd todo-saas-app
 -   **Authentication**: Stateless sessions via JWT stored in `localStorage`.
 -   **Authorization**: Custom middleware verifies ownership of resources before any DB operation.
 -   **Data Integrity**: Passwords are never stored in plain text, using `bcrypt` for hashing.
+
+### Note: I have deliberately committed and pushed the `.env` file in the `backend/` folder here so that after setting everything from above, the application can works out-of-the-box. 
